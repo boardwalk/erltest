@@ -10,8 +10,9 @@
 code_change(_OldVsn, _State, _Extra) ->
     {error, "NYI"}.
 
-handle_call(_Request, _From, State) ->
-    {reply, ok, State}.
+handle_call(Name, _From, State) ->
+    Reply = lists:flatten(io_lib:format("hello ~s from myserver", [Name])),
+    {reply, Reply, State}.
 
 handle_cast(_Request, State) ->
     {noreply, State}.

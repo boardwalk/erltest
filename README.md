@@ -54,21 +54,56 @@ The creates erltest.script, a script that describes how to start our release as 
 To finally bring up our system, we run erl:
 
 ```
-$ ERL_LIBS=. erl -boot erltest
+ERL_LIBS=. erl -boot erltest
+Erlang/OTP 19 [erts-8.6] [source] [128-bit] [smp:32:32] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+myserver init
+Eshell V8.6  (abort with ^G)
 ```
 
-You should see "Erlang/OTP..." and an Eshell prompt, with "myserver init" mixed in somewhere. This time we need `ERL_LIBS=.` so Erlang can find our .beam files. `-boot erltest` tells Erlang to execute erltest.boot, which essentially starts the kernel, stdlib, and erltest applications.
+This time we need `ERL_LIBS=.` so Erlang can find our .beam files. `-boot erltest` tells Erlang to execute erltest.boot, which essentially starts the kernel, stdlib, and erltest applications.
 
 Now we stop our application:
 
 ```
 > application:stop(erltest).
+myserver terminate
+ok
+=INFO REPORT==== 25-Jan-2027::20:47:00 ===
+    application: erltest
+    exited: stopped
+    type: permanent
+>
 ```
 
 And restart it if we want:
 
 ```
 > application:start(erltest).
+myserver init
+ok
+>
+```
+
+We can see our supervisor and server running with i:
+
+```
+> i().
+Pid                   Initial Call                          Heap     Reds Msgs
+Registered            Current Function                     Stack              
+...
+<0.67.0>              supervisor:mysuper/1                   233       96    0
+mysuper               gen_server:loop/6                        9              
+<0.68.0>              myserver:init/1                        233       34    0
+myserver              gen_server:loop/6                        9              
+...
+```
+
+You can talk to the server too:
+
+```
+> gen_server:call(myserver, "jabba").
+"hello jabba from myserver"
 ```
 
 That's it! Not too bad.
