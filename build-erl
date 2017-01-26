@@ -1,0 +1,2 @@
+#!/bin/bash
+erlc -o erltest/ebin/ erltest/src/*.erl

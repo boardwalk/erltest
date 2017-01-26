@@ -1,0 +1,4 @@
+#!/usr/bin/env escript
+
+main(_) ->
+    systools:make_script("erltest", [no_dot_erlang, no_warn_sasl]).
