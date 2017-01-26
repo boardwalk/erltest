@@ -49,7 +49,7 @@ To create our boot file, we run build-boot:
 $ ERL_LIBS=. ./build-boot
 ```
 
-The creates erltest.script, a script that describes how to start our release as well as erltest.boot, a binary version of the script. We need `ERL_LIBS=.` because Erlang needs to be able to find the erltest.app file of the erltest application we referenced erltest.rel, and the current directory is not in its load path by default.
+The creates erltest.script, a script that describes how to start our release as well as erltest.boot, a binary version of the script. We need `ERL_LIBS=.` because Erlang needs to be able to find the erltest.app file of the erltest application we referenced in erltest.rel, and the current directory is not in its load path by default.
 
 To finally bring up our system, we run erl:
 
