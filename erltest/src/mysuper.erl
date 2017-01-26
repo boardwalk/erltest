@@ -3,8 +3,9 @@
 -export([init/1]).
 
 init(_Args) ->
-	SupFlags = #{},
-	ChildSpecs = [
-		#{id => myserver, start => {gen_server, start_link, [myserver, [], []]}}
-	],
-	{ok, {SupFlags, ChildSpecs}}.
+    SupFlags = #{},
+    Args = [{local, myserver}, myserver, [], []],
+    ChildSpecs = [
+        #{id => myserver, start => {gen_server, start_link, Args}}
+    ],
+    {ok, {SupFlags, ChildSpecs}}.

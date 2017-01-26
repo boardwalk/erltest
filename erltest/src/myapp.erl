@@ -3,8 +3,8 @@
 -export([start/2, stop/1]).
 
 start(_Type, Args) ->
-	supervisor:start_link({local, mysuper}, mysuper, Args).
+    supervisor:start_link({local, mysuper}, mysuper, Args).
 
 stop(_State) ->
-	[].
+    [].
 
