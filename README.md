@@ -54,7 +54,7 @@ The creates erltest.script, a script that describes how to start our release as 
 To finally bring up our system, we run erl:
 
 ```
-ERL_LIBS=. erl -boot erltest
+$ ERL_LIBS=. erl -boot erltest
 Erlang/OTP 19 [erts-8.6] [source] [128-bit] [smp:32:32] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 myserver init
@@ -73,7 +73,6 @@ ok
     application: erltest
     exited: stopped
     type: permanent
->
 ```
 
 And restart it if we want:
@@ -82,7 +81,6 @@ And restart it if we want:
 > application:start(erltest).
 myserver init
 ok
->
 ```
 
 We can see our supervisor and server running with i:
